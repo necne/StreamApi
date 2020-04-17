@@ -9,4 +9,5 @@ public class Location {
     long id;
     String name;
     int sortCode;
+    String status;
 }

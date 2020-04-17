@@ -10,8 +10,8 @@ public class LocationDao {
 
     static {
         List<Location> locations = new ArrayList<>();
-        locations.add( Location.builder().id(1).sortCode(1).name("One").build() );
-        locations.add( Location.builder().id(2).sortCode(2).name("Two").build() );
+        locations.add( Location.builder().id(1).sortCode(1).name("One").status("Available").build() );
+        locations.add( Location.builder().id(2).sortCode(2).name("Two").status("Locked").build() );
 
         LOCATIONS = new ImmutableList.Builder<Location>().addAll(locations).build();
     }

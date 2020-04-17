@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/location")
 public class LocationController {
 
-    private static final int API_VERSION_MAX = 2;
+    private static final int API_VERSION_MAX = 3;
 
     @RequestMapping(value="/compare", method=RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getStreams() {
