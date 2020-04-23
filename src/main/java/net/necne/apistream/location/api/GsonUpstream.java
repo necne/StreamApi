@@ -16,6 +16,7 @@ public class GsonUpstream {
     private static final Gson GSON_1;
     private static final Gson GSON_2;
     private static final Gson GSON_3;
+    private static final Gson GSON_4;
 
     static {
         GsonBuilder gb = new GsonBuilder().setPrettyPrinting();
@@ -28,7 +29,22 @@ public class GsonUpstream {
                 jo.addProperty("key", src.getId());
                 jo.addProperty("name", src.getName());
                 jo.addProperty("sortCode", src.getSortCode());
-                jo.addProperty("status", src.getStatus());
+                jo.addProperty("changeQuantity", src.getState().isChangeQuantity());
+                jo.addProperty("pendingReconciliation", src.getState().isPendingReconciliation());
+				return jo;
+			}
+
+        });
+        GSON_4 = gb.create();
+
+        gb.registerTypeHierarchyAdapter(Location.class, new JsonSerializer<Location>() {
+
+            @Override
+			public JsonElement serialize(Location src, Type typeOfSrc, JsonSerializationContext context) {
+                JsonObject jo = GSON_4.toJsonTree(src).getAsJsonObject();
+                jo.remove("changeQuantity");
+                jo.remove("pendingReconciliation");
+                jo.addProperty("status", src.getState().getLabel());
 				return jo;
 			}
 
@@ -64,6 +80,7 @@ public class GsonUpstream {
 
     public static Gson getGson(int version) {
         switch(version){
+            case 4: return GSON_4;
             case 3: return GSON_3;
             case 2: return GSON_2;
             case 1: return GSON_1;

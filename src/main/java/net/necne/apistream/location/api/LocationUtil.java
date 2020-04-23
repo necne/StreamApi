@@ -6,7 +6,7 @@ public class LocationUtil {
     private static final String LEGACY_NAME_LABEL = "%s: %s";
 
     static String getLegacyNameLabel(final Location location) {
-        return String.format(LEGACY_NAME_LABEL, location.getName(), location.getStatus());
+        return String.format(LEGACY_NAME_LABEL, location.getName(), location.getState().getLabel());
     }    
 
 }
